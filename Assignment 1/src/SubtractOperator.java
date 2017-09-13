@@ -1,4 +1,4 @@
-public class AdditionOperator extends Operator{
+public class SubtractOperator extends Operator{
 
     @Override
     public int priority() {
@@ -7,6 +7,6 @@ public class AdditionOperator extends Operator{
 
     @Override
     public Operand execute(Operand op1, Operand op2) {
-        return new Operand(op1.getValue()+ op2.getValue());
+        return new Operand(op1.getValue()-op2.getValue());
     }
 }
