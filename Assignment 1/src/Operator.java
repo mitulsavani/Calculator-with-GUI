@@ -10,16 +10,15 @@ public abstract class Operator {
   // Where does this declaration go? What should its access level be?
   // Class or instance variable? Is this the right declaration?
    HashMap<String,Operator> operators  = new HashMap();
+   
    static{
-   operators.put( "(", new PranOpen() );
+   operators.put("(", new PranOpen() );
    operators.put( ")", new PranClose() );
    operators.put( "+", new AdditionOperator() );
    operators.put( "-", new SubtractOperator() );
    operators.put( "*", new MultiplyOperator() );
    operators.put( "/", new DivisionOperator() );
    operators.put( "^", new PowerOperator() );
-   
-   
    }
    
 
