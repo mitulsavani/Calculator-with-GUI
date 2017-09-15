@@ -1,12 +1,14 @@
-public class Exclamation extends Operator{
+
+class startOfExpression extends Operator {
 
     @Override
     public int priority() {
-        return 5;
+        return 0;
     }
 
     @Override
     public Operand execute(Operand op1, Operand op2) {
-        return new Operand(op1.getValue()-op2.getValue());
+        return null;
     }
+    
 }

@@ -2,7 +2,7 @@ public class PranClose extends Operator{
 
     @Override
     public int priority() {
-        return 1;
+        return 2;
     }
 
     @Override

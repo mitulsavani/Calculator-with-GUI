@@ -12,19 +12,29 @@ public abstract class Operator{
    static HashMap<String,Operator> operators  = new HashMap();
    
    
-   static{
-   operators.put("(", new PranOpen() );
-   operators.put( ")", new PranClose() );
-   operators.put( "+", new AdditionOperator() );
-   operators.put( "-", new SubtractOperator() );
-   operators.put( "*", new MultiplyOperator() );
-   operators.put( "/", new DivisionOperator() );
-   operators.put( "^", new PowerOperator() );
+   static
+   {    
+        operators.put("#", new startOfExpression());
+        operators.put("(", new PranOpen() );
+        operators.put(")", new PranClose() );
+        operators.put("+", new AdditionOperator() );
+        operators.put("-", new SubtractOperator() );
+        operators.put("*", new MultiplyOperator() );
+        operators.put("/", new DivisionOperator() );
+        operators.put("^", new PowerOperator() );
    }
    
-
   public abstract int priority();
   public abstract Operand execute( Operand op1, Operand op2 );
+  
+  public static boolean check(String token){
+    return token.matches("[0-9]");
+    }
+  
+  public static Operator get(String token)
+  {
+      return (Operator)operators.get(token);
+  }
       
 }
 

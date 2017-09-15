@@ -5,7 +5,7 @@ public class Evaluator {
   private Stack<Operator> operatorStack;
   
   private StringTokenizer tokenizer;
-  private static final String DELIMITERS = "+-*^/( ";
+  private static final String DELIMITERS = "+-*^/()# ";
 
   public Evaluator() {
     operandStack = new Stack<>();
@@ -26,17 +26,18 @@ public class Evaluator {
 
     // TODO Operator is abstract - this will need to be fixed:
     // operatorStack.push( new Operator( "#" ));
+    operatorStack.push(new startOfExpression());
 
     // When is it a good time to add the "!" operator?
 
     while ( this.tokenizer.hasMoreTokens() ) {
-      // filter out spaces
+      token = tokenizer.nextToken();
       if ( !( token = this.tokenizer.nextToken() ).equals( " " )) {
         // check if token is an operand
         if ( Operand.check( token )) {
           operandStack.push( new Operand( token ));
         } else {
-          if ( ! Operator.check( token )) {
+          if (!Operator.check( token )) {
             System.out.println( "*****invalid token******" );
             System.exit( 1 );
           }
@@ -47,8 +48,9 @@ public class Evaluator {
           // skeleton for an example.
           Operator newOperator = Operator.get(token);
           
-
-          while ( operatorStack.peek().priority() >= newOperator.priority() ) {
+          
+          while ( operatorStack.peek().priority() >= newOperator.priority() && (operandStack.size()>1) ) 
+          {
             // note that when we eval the expression 1 - 2 we will
             // push the 1 then the 2 and then do the subtraction operation
             // This means that the first number to be popped is the
@@ -57,10 +59,8 @@ public class Evaluator {
             Operand op2 = operandStack.pop();
             Operand op1 = operandStack.pop();
             operandStack.push( oldOpr.execute( op1, op2 ));
-            pop
           }
-
-          operatorStack.push( newOperator );
+            operatorStack.push( newOperator );
         }
       }
     }
