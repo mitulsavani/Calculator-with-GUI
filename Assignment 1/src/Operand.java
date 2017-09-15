@@ -15,6 +15,11 @@ public class Operand {
   }
 
   public static boolean check( String token ) {
-      return false;
+      try{
+          Integer.parseInt(token);
+      }
+      catch(NumberException)
+          return false;
+      }
   }
 }

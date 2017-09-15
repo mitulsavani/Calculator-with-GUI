@@ -3,9 +3,9 @@ import java.util.*;
 public class Evaluator {
   private Stack<Operand> operandStack;
   private Stack<Operator> operatorStack;
-
+  
   private StringTokenizer tokenizer;
-  private static final String DELIMITERS = "+-*^/#! ";
+  private static final String DELIMITERS = "+-*^/( ";
 
   public Evaluator() {
     operandStack = new Stack<>();
@@ -45,7 +45,7 @@ public class Evaluator {
           // The Operator class should contain an instance of a HashMap,
           // and values will be instances of the Operators.  See Operator class
           // skeleton for an example.
-          Operator newOperator = new Operator(token);
+          Operator newOperator = Operator.get(token);
           
 
           while ( operatorStack.peek().priority() >= newOperator.priority() ) {
@@ -57,6 +57,7 @@ public class Evaluator {
             Operand op2 = operandStack.pop();
             Operand op1 = operandStack.pop();
             operandStack.push( oldOpr.execute( op1, op2 ));
+            pop
           }
 
           operatorStack.push( newOperator );
