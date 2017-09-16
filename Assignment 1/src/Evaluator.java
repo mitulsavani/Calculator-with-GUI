@@ -11,6 +11,7 @@ public class Evaluator {
     operandStack = new Stack<>();
     operatorStack = new Stack<>();
   }
+  
 
   public int eval( String expression ) {
     String token;
@@ -26,21 +27,26 @@ public class Evaluator {
 
     // TODO Operator is abstract - this will need to be fixed:
     // operatorStack.push( new Operator( "#" ));
-    operatorStack.push(new startOfExpression());
+    //operatorStack.push(new startOfExpression());
 
     // When is it a good time to add the "!" operator?
 
-    while ( this.tokenizer.hasMoreTokens() ) {
-      token = tokenizer.nextToken();
-      if ( !( token = this.tokenizer.nextToken() ).equals( " " )) {
+    while ( this.tokenizer.hasMoreTokens() ) 
+    {   
+      if ( !( token = this.tokenizer.nextToken() ).equals( " " )) 
+      {
         // check if token is an operand
-        if ( Operand.check( token )) {
-          operandStack.push( new Operand( token ));
-        } else {
-          if (!Operator.check( token )) {
-            System.out.println( "*****invalid token******" );
-            System.exit( 1 );
-          }
+        if (Operand.check( token )) 
+        {
+            operandStack.push( new Operand( token ));
+        } 
+        else 
+        {
+            if (!Operator.check( token )) 
+            {
+                System.out.println( "*****invalid token******" );
+                System.exit( 1 );
+            }
 
           // TODO Operator is abstract - these two lines will need to be fixed:
           // The Operator class should contain an instance of a HashMap,
@@ -48,23 +54,28 @@ public class Evaluator {
           // skeleton for an example.
           Operator newOperator = Operator.get(token);
           
-          
-          while ( operatorStack.peek().priority() >= newOperator.priority() && (operandStack.size()>1) ) 
+          if(!operatorStack.isEmpty())
           {
-            // note that when we eval the expression 1 - 2 we will
-            // push the 1 then the 2 and then do the subtraction operation
-            // This means that the first number to be popped is the
-            // second operand, not the first operand - see the following code
-            Operator oldOpr = operatorStack.pop();
-            Operand op2 = operandStack.pop();
-            Operand op1 = operandStack.pop();
-            operandStack.push( oldOpr.execute( op1, op2 ));
+            while ( !(operatorStack.isEmpty())&&(operatorStack.peek().priority()) >= (newOperator.priority()) ) 
+            {
+              // note that when we eval the expression 1 - 2 we will
+              // push the 1 then the 2 and then do the subtraction operation
+              // This means that the first number to be popped is the
+              // second operand, not the first operand - see the following code
+                  Operator oldOpr = operatorStack.pop();
+                  Operand op2 = operandStack.pop();
+                  Operand op1 = operandStack.pop();
+                  operandStack.push( oldOpr.execute( op1, op2 ));
+            }
           }
-            operatorStack.push( newOperator );
+          operatorStack.push(newOperator); 
         }
-      }
-    }
-
+        
+      }//end of space
+    }//end of tokens in an expression
+    System.out.println("Oprator si  : "+operatorStack.size());
+    System.out.println("Operand si   : "+operandStack.size());
+    
     // Control gets here when we've picked up all of the tokens; you must add
     // code to complete the evaluation - consider how the code given here
     // will evaluate the expression 1+2*3
@@ -76,7 +87,16 @@ public class Evaluator {
     // Suggestion: create a method that takes an operator as argument and
     // then executes the while loop; also, move the stacks out of the main
     // method
-    
-    return 0;
+    while(!operatorStack.isEmpty())
+    {
+        Operator LastOperator = operatorStack.pop();
+        Operand op2 = operandStack.pop();
+        Operand op1 = operandStack.pop();
+        operandStack.push( LastOperator.execute( op1, op2 ));
+    }
+    System.out.println(operandStack.peek().getValue());
+    //System.out.println("Oprator si  : "+operatorStack.size());
+    //System.out.println("Operand si   : "+operandStack.size());
+    return (operandStack.peek().getValue());
   }
 }
