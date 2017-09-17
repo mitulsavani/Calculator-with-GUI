@@ -14,6 +14,7 @@ public abstract class Operator {
     static 
     {
         operators.put("(", new PranOpen());
+        operators.put(")", new PranClose());
         operators.put("+", new AdditionOperator());
         operators.put("-", new SubtractOperator());
         operators.put("*", new MultiplyOperator());
