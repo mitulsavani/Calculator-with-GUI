@@ -12,8 +12,10 @@ import java.util.*;
     operatorStack = new Stack<>();
   }
   
-  private void PerformPranthesisOperation()
+  //This function will perform operation on operands that are inside the parentheses
+  private void PerformParenthesesOperation()
   {
+      //this loop will run until the top value of the operator stack '(' is found
       while((operatorStack.peek().priority()!=1))
       {
         Operator lastOperator = operatorStack.pop();
@@ -22,18 +24,22 @@ import java.util.*;
         
         operandStack.push( lastOperator.execute( op1, op2 ));
       }    
+        //So we have a peek value of operator stack i.e. '(', so now its time to remove that operator.
         operatorStack.pop();
   }
   
+  //Eval function takes a string; does computation and return the answer back to main
   public int eval( String expression ) {
     String token;
     
     this.tokenizer = new StringTokenizer( expression, DELIMITERS, true );
-
+    
+    //this loops is useful to reach till the end of the expression 
     while ( this.tokenizer.hasMoreTokens() ) 
     {   
       if ( !( token = this.tokenizer.nextToken() ).equals( " " )) 
       {
+        //It checks whether the token is Operand?
         if (Operand.check( token )) 
         {
             operandStack.push(new Operand( token ));
@@ -47,14 +53,14 @@ import java.util.*;
             }
             else if(")".equals(token))
             {
-              PerformPranthesisOperation();
+              PerformParenthesesOperation();
             }
             else if("(".equals(token))
             {   operatorStack.push(new PranOpen());  
-}            else
+}           
+            else
             {
                 Operator newOperator = Operator.get(token);
-                
                 
                 if(!operatorStack.isEmpty())
                 {
