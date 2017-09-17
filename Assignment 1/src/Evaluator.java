@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Evaluator {
+  public class Evaluator {
   private Stack<Operand> operandStack;
   private Stack<Operator> operatorStack;
   
@@ -12,9 +12,7 @@ public class Evaluator {
     operatorStack = new Stack<>();
   }
   
-
-  
-  public void PerformPranthesisOperation()
+  private void PerformPranthesisOperation()
   {
       while((operatorStack.peek().priority()!=1))
       {

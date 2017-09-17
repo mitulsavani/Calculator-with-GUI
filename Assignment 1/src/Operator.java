@@ -22,19 +22,19 @@ public abstract class Operator {
         operators.put("^", new PowerOperator());
     }
 
-    public abstract int priority();
+    protected abstract int priority();
 
-    public abstract Operand execute(Operand op1, Operand op2);
+    protected abstract Operand execute(Operand op1, Operand op2);
 
     public static boolean check(String token) {
-        if (operators.containsKey(token)) {
-            return true;
-        } else {
-            return false;
-        }
+        if (operators.containsKey(token)) 
+        {  return true;  }
+        else 
+        {  return false; }
     }
 
-    public static Operator get(String token) {
+    protected static Operator get(String token) 
+    {
         return (Operator) operators.get(token);
     }
 
