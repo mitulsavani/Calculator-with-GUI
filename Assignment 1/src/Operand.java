@@ -6,8 +6,8 @@ public class Operand {
         value=Integer.parseInt(token);
     }
 
-    public Operand( int value ) {
-        this.value=value;
+    public Operand( int ParameterizedValue ) {
+       value=ParameterizedValue;
     }
 
     public int getValue() {

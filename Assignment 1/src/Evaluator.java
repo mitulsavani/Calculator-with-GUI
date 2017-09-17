@@ -45,7 +45,7 @@ public class Evaluator {
               PerformPranthesisOperation();
             }
             
-            if (!Operator.check( token )) 
+            if(!Operator.check( token )) 
             {
                 System.out.println( "*****invalid token******" );
                 System.exit( 1 );
@@ -55,12 +55,13 @@ public class Evaluator {
           
           if(!operatorStack.isEmpty())
           {
-                while((!operatorStack.isEmpty())&&(operatorStack.peek().priority()) >= (newOperator.priority())) 
+                while((!operatorStack.isEmpty())  &&  ((operatorStack.peek().priority()) >= (newOperator.priority()))) 
                 {
+                      System.out.println("Operating old operator class   IN PRIORITY");
                       Operator oldOpr = operatorStack.pop();
                       Operand op2 = operandStack.pop();
                       Operand op1 = operandStack.pop();
-                      operandStack.push( oldOpr.execute( op1, op2 ));
+                      operandStack.push(oldOpr.execute( op1, op2 ));
                 }
           }
           operatorStack.push(newOperator); 
@@ -68,15 +69,19 @@ public class Evaluator {
       }//end of space
     }//end of tokens in an expression
   
-    
+    System.out.println("Operand : "+operandStack.size());
+    System.out.println("Operator : "+operatorStack.size());
+
     while((operatorStack.size() != 0))
     {
+        System.out.println("Operating old operator class   IN EXECUTION");
         Operator LastOperator = operatorStack.pop();
-        Operand op2 = operandStack.pop();
-        Operand op1 = operandStack.pop();
-        operandStack.push( LastOperator.execute( op1, op2 ));
+        Operand operator1 = operandStack.pop();
+        Operand operator2 = operandStack.pop();
+        System.out.println("Last Operator : "+ LastOperator.getClass());
+        operandStack.push(LastOperator.execute(operator2,operator1));
     }
     
-    return (operandStack.peek().getValue());
+    return (operandStack.pop().getValue());
   }
 }
