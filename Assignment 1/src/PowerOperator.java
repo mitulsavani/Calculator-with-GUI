@@ -5,16 +5,19 @@ public class PowerOperator extends Operator{
         return 4;
     }
     @Override
-    public Operand execute(Operand op1, Operand op2) {
+    public Operand execute(Operand op1, Operand op2) 
+    {
         
-        int ans=0;
+        System.out.println("Ans: ");
+        int ans=1;
         int x=op1.getValue();
         int y=op2.getValue();
         
         for(int i=1; i<=y; i++)
-            ans+= ans*i;
-        
-        return new Operand((int)ans);
+        {    ans+= x*i;
+             
+        }
+        return (new Operand(ans));
     }
     
     

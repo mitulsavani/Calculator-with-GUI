@@ -11,10 +11,9 @@ public abstract class Operator {
     // Class or instance variable? Is this the right declaration?
     static HashMap<String, Operator> operators = new HashMap();
 
-    static {
-        operators.put("#", new startOfExpression());
+    static 
+    {
         operators.put("(", new PranOpen());
-        operators.put(")", new PranClose());
         operators.put("+", new AdditionOperator());
         operators.put("-", new SubtractOperator());
         operators.put("*", new MultiplyOperator());
