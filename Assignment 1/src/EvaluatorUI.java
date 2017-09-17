@@ -11,7 +11,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
   // numbered from left to right, top to bottom
   // bText[] array contains the text for corresponding buttons
   private static final String[] bText = {
-    "7", "8", "9", "+", "4", "5", "6", "- ", "1", "2", "3",
+    "7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3",
     "*", "0", "^", "=", "/", "(", ")", "C", "CE"
   };
   private Button[] buttons = new Button[ bText.length ];
@@ -51,7 +51,96 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     setVisible( true );
   }
 
-  public void actionPerformed( ActionEvent arg0 ) {
-    // You need to fill in this fuction
+  public void actionPerformed( ActionEvent arg0 ) 
+  {
+    String command = arg0.getActionCommand();
+    
+    switch(command)
+    {
+        case "1":
+                txField.setText(txField.getText()+command);
+                break;
+            
+        case "2":
+               txField.setText(txField.getText()+command);
+                break;
+            
+        case "3":
+               txField.setText(txField.getText()+command);
+                break;
+        
+        case "4":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "5":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "6":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "7":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "8":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "9":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "0":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "(":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case ")":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "+":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "-":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "*":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "/":
+              txField.setText(txField.getText()+command);
+               break;
+
+        case "^":
+               txField.setText(txField.getText()+command);
+               break;
+        
+        case "C":
+               txField.setText("");
+                break;
+            
+        case "CE":
+                txField.setText("");
+                break;
+        
+        case "=":
+                Evaluator Object = new Evaluator();
+                int result= Object.eval(txField.getText());
+                txField.setText(Integer.toString(result));
+                break;
+            
+        default:
+                txField.setText("Invalid Input");     
+    }
   }
 }

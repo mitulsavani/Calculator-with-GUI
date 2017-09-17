@@ -1,7 +1,7 @@
 public class EvaluatorTester {
   public static void main(String[] args) {
     Evaluator evaluator = new Evaluator();
-    String[]test ={"( ((5+5)*(5+5)) +(2+2)*(5*2) )"};
+    String[]test ={"2^(3+2*2-1)"};
    
     
     for ( String arg : test ) {

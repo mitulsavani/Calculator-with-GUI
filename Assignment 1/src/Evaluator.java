@@ -78,7 +78,7 @@ import java.util.*;
         }//end of space
       }//end of tokens in an expression
     }
-    while((operatorStack.size() != 0))
+    while(!operatorStack.isEmpty())
     {
         Operator LastOperator = operatorStack.pop();
         Operand operator1 = operandStack.pop();
