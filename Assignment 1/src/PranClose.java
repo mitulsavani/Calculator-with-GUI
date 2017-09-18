@@ -1,10 +1,14 @@
 public class PranClose extends Operator{
 
-    protected int priority() {
+    @Override
+    protected int priority() 
+    {
         return 1;
     }
     
-    protected Operand execute(Operand op1, Operand op2) {
+    @Override
+    protected Operand execute(Operand op1, Operand op2) 
+    {
         return null;
     }
 }

@@ -11,12 +11,13 @@ public class Operand {
     {
        value=ParameterizedValue;
     }
-
+    
     protected int getValue() 
     {
         return value;
     }
 
+    //This functions check whether the token from evaluator funtion is under or inclusive 0-9
     public static boolean check( String token ) 
     {
         try
