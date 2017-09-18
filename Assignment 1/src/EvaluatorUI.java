@@ -134,9 +134,15 @@ public class EvaluatorUI extends JFrame implements ActionListener {
                 break;
         
         case "=":
+            
+            if(txField.getText().equals(""))
+                txField.setText("No Expression Found");
+            else
+            {
                 Evaluator Object = new Evaluator();
                 int result= Object.eval(txField.getText());
                 txField.setText(Integer.toString(result));
+            }
                 break;
             
         default:
